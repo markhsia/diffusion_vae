@@ -212,14 +212,14 @@ class DiffusionVAE:
                 # Sum over the data dimensions
                 for dimension in range(len(self.encoder_class.input_shape)):
                     se = K.sum(se, axis=-1)
-                loss = 0.5 * (se / self.var_x + np.product(self.encoder_class.input_shape) * np.log(
+                loss = 0.5 * (se / self.var_x + np.product(self.encoder_class.input_shape) * np.math.log(
                     2 * np.pi * self.var_x))
 
             elif self.r_loss == "binary":
                 print("Reconstruction loss is binary cross entropy")
                 epsilon = K.epsilon()
-                loss = -inputs * tf.log(epsilon + outputs) \
-                       - (1 - inputs) * tf.log(epsilon + 1 - outputs)
+                loss = -inputs * tf.math.log(epsilon + outputs) \
+                       - (1 - inputs) * tf.math.log(epsilon + 1 - outputs)
                 # Sum over the data dimensions
                 for dimension in range(len(self.encoder_class.input_shape)):
                     loss = tf.reduce_sum(loss, axis=-1)

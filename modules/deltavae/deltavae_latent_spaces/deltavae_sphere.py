@@ -259,7 +259,7 @@ def volume_sphere(d):
         k = latent_dim / 2
         volume = latent_dim * math.pi ** k / math.factorial(k)
     else:
-        k = (latent_dim - 1) / 2
+        k = int( (latent_dim - 1) / 2)
         volume = latent_dim * 2 * math.factorial(k) * (4 * math.pi) ** k / math.factorial(2 * k + 1)
 
     return volume
